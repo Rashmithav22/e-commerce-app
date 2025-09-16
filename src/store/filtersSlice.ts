@@ -1,0 +1,83 @@
+// // src/store/filtersSlice.ts
+// import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+
+// interface FiltersState {
+//   category: string[];
+//   color: string[];
+//   size: string[]; // still array for compatibility
+// }
+
+// const initialState: FiltersState = {
+//   category: [],
+//   color: [],
+//   size: [],
+// };
+
+// export const filtersSlice = createSlice({
+//   name: "filters",
+//   initialState,
+//   reducers: {
+//     toggleCategory: (state, action: PayloadAction<string>) => {
+//       state.category.includes(action.payload)
+//         ? (state.category = state.category.filter((c) => c !== action.payload))
+//         : state.category.push(action.payload);
+//     },
+//     toggleColor: (state, action: PayloadAction<string>) => {
+//       state.color.includes(action.payload)
+//         ? (state.color = state.color.filter((c) => c !== action.payload))
+//         : state.color.push(action.payload);
+//     },
+//     toggleSize: (state, action: PayloadAction<string>) => {
+//       // ✅ clear all and keep only the new one
+//       state.size = [action.payload];
+//     },
+//   },
+// });
+
+// export const { toggleCategory, toggleColor, toggleSize } = filtersSlice.actions;
+
+// export default filtersSlice.reducer;
+
+
+// src/store/filtersSlice.ts
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+
+interface FiltersState {
+  category: string[];
+  color: string[];
+  waist: string | null;
+  clothing: string | null;
+}
+
+const initialState: FiltersState = {
+  category: [],
+  color: [],
+  waist: null,
+  clothing: null,
+};
+
+export const filtersSlice = createSlice({
+  name: "filters",
+  initialState,
+  reducers: {
+    toggleCategory: (state, action: PayloadAction<string>) => {
+      state.category.includes(action.payload)
+        ? (state.category = state.category.filter((c) => c !== action.payload))
+        : state.category.push(action.payload);
+    },
+    toggleColor: (state, action: PayloadAction<string>) => {
+      state.color.includes(action.payload)
+        ? (state.color = state.color.filter((c) => c !== action.payload))
+        : state.color.push(action.payload);
+    },
+    setWaist: (state, action: PayloadAction<string>) => {
+      state.waist = state.waist === action.payload ? null : action.payload;
+    },
+    setClothing: (state, action: PayloadAction<string>) => {
+      state.clothing = state.clothing === action.payload ? null : action.payload;
+    },
+  },
+});
+
+export const { toggleCategory, toggleColor, setWaist, setClothing } = filtersSlice.actions;
+export default filtersSlice.reducer;
