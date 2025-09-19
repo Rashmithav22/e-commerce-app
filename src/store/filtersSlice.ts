@@ -44,14 +44,14 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface FiltersState {
   category: string[];
-  color: string[];
+  colors: string[];
   waist: string | null;
   clothing: string | null;
 }
 
 const initialState: FiltersState = {
   category: [],
-  color: [],
+  colors: [],
   waist: null,
   clothing: null,
 };
@@ -66,9 +66,9 @@ export const filtersSlice = createSlice({
         : state.category.push(action.payload);
     },
     toggleColor: (state, action: PayloadAction<string>) => {
-      state.color.includes(action.payload)
-        ? (state.color = state.color.filter((c) => c !== action.payload))
-        : state.color.push(action.payload);
+      state.colors.includes(action.payload)
+        ? (state.colors = state.colors.filter((c) => c !== action.payload))
+        : state.colors.push(action.payload);
     },
     setWaist: (state, action: PayloadAction<string>) => {
       state.waist = state.waist === action.payload ? null : action.payload;

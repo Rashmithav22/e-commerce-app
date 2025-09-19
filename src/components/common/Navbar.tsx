@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { Category } from '@/types/categories';
 import { navbarConfig } from '@/types/categories';
 import { usePathname } from 'next/navigation';
+import CartButton from '../CartButton';
 
 
 type NavbarProps = {
@@ -134,7 +135,7 @@ useEffect(() => {
   onClick={() => setSearchOpen(prev => !prev)}
 />
           <User size={20} />
-          <ShoppingCart size={20} />
+           <CartButton />
           <span className="hidden sm:inline">USD</span>
 
           {/* Mobile menu button */}
@@ -176,7 +177,7 @@ useEffect(() => {
       </nav>
 
      {hoveredLink && (
-        <div className="absolute left-0 w-full bg-white  z-50 px-10 py-20" style={{ top: '100%' }}
+        <div className="absolute left-0 w-full bg-white  z-50 px-10 py-20 border-t" style={{ top: '100%' }}
           onMouseEnter={() => { if (leaveTimeoutRef.current) clearTimeout(leaveTimeoutRef.current); }}
           onMouseLeave={handleMouseLeave}
         >
@@ -220,7 +221,7 @@ useEffect(() => {
     )}
 
 {/* Sub Categories (desktop only) */}
-      <div className="hidden md:flex flex-wrap justify-center gap-4 py-2 text-[0.85rem] border-b">
+      <div className="hidden md:flex flex-wrap justify-center gap-4 py-2 text-[0.85rem] ">
         {categories.map(cat => (
   <Link key={cat.label} href={cat.href} className="hover:underline">
     {cat.label}

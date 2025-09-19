@@ -51,6 +51,8 @@ import { usePathname } from 'next/navigation';
 import { Provider } from 'react-redux';
 import { store } from '@/store';
 import Footer from '@/components/common/Footer';
+import { CartProvider } from "../store/cartContext";
+import CartDrawer from "../components/CartDrawer";
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
@@ -62,11 +64,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <body>
         <Provider store={store}>
+            <CartProvider>
           <Navbar
             categories={currentConfig.categories ?? []}
             showCategories={currentConfig.showCategories}
           />
           {children}
+          <CartDrawer />
+          </CartProvider>
           <Footer />
         </Provider>
       </body>

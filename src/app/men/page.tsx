@@ -1,164 +1,194 @@
+
+
+
+
+// // src/app/men/page.tsx
+// "use client";
+// import { useSelector } from "react-redux";
+// import Breadcrumb from "@/components/Breadcrumb";
+// import FilterSection from "@/components/Filters/FilterSection";
+// import ProductGrid from "@/components/Products/ProductGrid";
+// import { RootState } from "@/store/index"; // <-- import RootState type
+
+// const categories = [
+//   "Clothing",
+//   "Shoes",
+//   "Accessories & Gift Cards",
+//   "Backpacks, Weekenders & Duffle Bags",
+//   "Hoodies & Sweatshirts",
+// ];
+// const colors = [
+//   "red",
+//   "blue",
+//   "green",
+//   "black",
+//   "white",
+//   "yellow",
+//   "pink",
+//   "gold",
+//   "orange",
+//   "purple",
+// ];
+// const sizes = [
+//   "XXS",
+//   "XS",
+//   "S",
+//   "M",
+//   "L",
+//   "XL",
+//   "XXL",
+//   "XXXL",
+//   "26",
+//   "28",
+//   "30",
+//   "32",
+//   "34",
+//   "36",
+//   "38",
+//   "40",
+// ];
+
+// export default function MenPage() {
+//   // ✅ get filters + products from Redux
+//   const filters = useSelector((state: RootState) => state.filters);
+//   const products = useSelector((state: RootState) => state.products.items);
+
+//   // ✅ filter logic stays same
+//   const filteredProducts = products.filter((p) => {
+//     const catCheck = filters.category.length
+//       ? filters.category.includes(p.category)
+//       : true;
+
+//     const colorCheck = filters.colors.length
+//       ? p.colors.some((c) => filters.colors.includes(c))
+//       : true;
+
+//     const sizeCheck =
+//       filters.waist || filters.clothing
+//         ? (filters.waist ? p.size.includes(filters.waist) : true) &&
+//           (filters.clothing ? p.size.includes(filters.clothing) : true)
+//         : true;
+
+//     return catCheck && colorCheck && sizeCheck;
+//   });
+
+//   return (
+//     <div className="p-[clamp(1rem,4vw,3.5rem)] ">
+//       <div className="flex gap-6">
+//         {/* Sidebar */}
+//         <div className="w-[17%]">
+//           <FilterSection categories={categories} colors={colors} sizes={sizes} />
+//         </div>
+
+//         {/* Main content */}
+//         <div className="w-[83%]">
+//           <Breadcrumb
+//             paths={[{ label: "Home", href: "/" }, { label: "Men" }]}
+//           />
+//           {/* Title */}
+//           <p className=" font-light text-[clamp(2rem,2vw,5rem)]">
+//             Men’s Clothing & Apparel - New Arrivals
+//           </p>
+//           <p className="text-gray-600 mb-4">Featured</p>
+
+//           {/* Product Grid */}
+//           <ProductGrid products={filteredProducts} />
+//         </div>
+//       </div>
+//     </div>
+//   );
+// }
+
+
 // src/app/men/page.tsx
 "use client";
 import { useSelector } from "react-redux";
+import { useState } from "react";
 import Breadcrumb from "@/components/Breadcrumb";
 import FilterSection from "@/components/Filters/FilterSection";
 import ProductGrid from "@/components/Products/ProductGrid";
-import { Product } from "@/types/product";
+import { RootState } from "@/store/index";
+import { SlidersHorizontal } from "lucide-react"; // icon for filter toggle
 
-
-const products: Product[] = [
-  {
-    id: 1,
-    title: "Men T-Shirt",
-    price: 100,
-    colors: ["red", "blue", "green"],
-    category: "Clothing",
-    size: ["S", "M", "L","32"],
-    image: "/men/ig1.png",
-    
-  },
-  {
-    id: 2,
-    title: "Men Jeans",
-    price: 150,
-    colors: ["blue", "black"],
-    category: "Clothing",
-    size: ["30", "32", "34"],
-    image: "/men/ig2.png",
-    tag:"ORGANIC COTTON",
-  },
-   {
-    id: 3,
-    title: "Men T-Shirt",
-    price: 100,
-    colors: ["red", "blue", "green"],
-    category: "Clothing",
-    size: ["S", "M", "L"],
-    image: "/men/ig3.png",
-    tag:["RENEWED MATERIALS","CLEANER CHEMISTRY"],
-  },
-  {
-    id: 4,
-    title: "Men Jeans",
-    price: 150,
-    colors: ["blue", "black","gold"],
-    category: "Clothing",
-    size: ["30", "32", "34"],
-    image: "/men/ig4.png",
-  },
-   {
-    id: 5,
-    title: "Men T-Shirt",
-    price: 100,
-    colors: ["red", "blue", "green","orange"],
-    category: "Clothing",
-    size: ["S", "M", "L"],
-    image: "/men/ig5.png",
-  },
-  {
-    id: 6,
-    title: "Men Jeans",
-    price: 150,
-    colors: ["blue", "black","pink"],
-    category: "Clothing",
-    size: ["30", "32", "34"],
-    image: "/men/ig6.png",
-    tag:"ORGANIC COTTON",
-  },
-   {
-    id: 7,
-    title: "Men T-Shirt",
-    price: 100,
-    colors: ["red", "blue", "green","beige"],
-    category: "Clothing",
-    size: ["S", "M", "L"],
-    image: "/men/ig7.png",
-    tag:["RENEWED MATERIALS","CLEANER CHEMISTRY"],
-  },
-  {
-    id: 8,
-    title: "Men Jeans",
-    price: 150,
-    colors: ["blue", "black","gray"],
-    category: "Clothing",
-    size: ["30", "32", "34"],
-    image: "/men/ig8.png",
-  },
-   {
-    id: 9,
-    title: "Men Jeans",
-    price: 150,
-    colors: ["blue", "black","purple"],
-    category: "Clothing",
-    size: ["30", "32", "34"],
-    image: "/men/ig9.png",
-  },
-   {
-    id: 10,
-    title: "Men T-Shirt",
-    price: 100,
-    colors: ["red", "blue", "green","yellow"],
-    category: "Shoes",
-    size: ["S", "M", "L"],
-    image: "/men/ig9.png",
-  },
-  {
-    id: 11,
-    title: "Men Jeans",
-    price: 150,
-    colors: ["blue", "black,white"],
-    category: "Accessories & Gift Cards",
-    size: ["30", "32", "34"],
-    image: "/men/ig9.png",
-  },
-  // ...more products
+const categories = [
+  "Clothing",
+  "Shoes",
+  "Accessories & Gift Cards",
+  "Backpacks, Weekenders & Duffle Bags",
+  "Hoodies & Sweatshirts",
 ];
-
-const categories = ["Clothing", "Shoes", "Accessories & Gift Cards","Backpacks, Weekenders & Duffle Bags","Hoodies & Sweatshirts"];
-const colors = ["red", "blue", "green", "black", "white","yellow","pink","gold","orange","purple"];
-const sizes = ["XXS","XS","S", "M", "L", "XL","XXL","XXXL", "26","28","30", "32", "34","36","38","40"];
+const colors = ["red", "blue", "green", "black", "white", "yellow", "pink", "gold", "orange", "purple"];
+const sizes = ["XXS","XS","S","M","L","XL","XXL","XXXL","26","28","30","32","34","36","38","40"];
 
 export default function MenPage() {
-  const filters = useSelector((state: any) => state.filters);
+  const filters = useSelector((state: RootState) => state.filters);
+  const products = useSelector((state: RootState) => state.products.items);
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
 
-  // filter logic
   const filteredProducts = products.filter((p) => {
     const catCheck = filters.category.length ? filters.category.includes(p.category) : true;
-    const colorCheck = filters.color.length ? p.colors.some((c) => filters.color.includes(c)) : true;
-   // true if either waist or clothing matches, or if none selected
-const sizeCheck =
-  filters.waist || filters.clothing
-    ? (filters.waist ? p.size.includes(filters.waist) : true) &&
-      (filters.clothing ? p.size.includes(filters.clothing) : true)
-    : true;
-
+    const colorCheck = filters.colors.length ? p.colors.some((c) => filters.colors.includes(c)) : true;
+    const sizeCheck =
+      filters.waist || filters.clothing
+        ? (filters.waist ? p.size.includes(filters.waist) : true) &&
+          (filters.clothing ? p.size.includes(filters.clothing) : true)
+        : true;
     return catCheck && colorCheck && sizeCheck;
   });
 
-return (
-  <div className="p-[clamp(1rem,4vw,3.5rem)] ">
-    
-    <div className="flex gap-6">
-      {/* Sidebar */}
-      <div className="w-[17%]">
-        <FilterSection categories={categories} colors={colors} sizes={sizes} />
-        {/* <FilterSidebar categories={categories} colors={colors} sizes={sizes} /> */}
+  return (
+    <div className="p-[clamp(1rem,4vw,3.5rem)]">
+      <div className="flex flex-col lg:flex-row gap-2 lg:gap-6">
+        {/* Sidebar (desktop) */}
+        <div className="hidden lg:block w-[17%]">
+          <FilterSection categories={categories} colors={colors} sizes={sizes} />
+        </div>
+
+        {/* Mobile Filter Toggle */}
+        <div className="lg:hidden  flex justify-end">
+          <button
+            onClick={() => setIsFilterOpen(true)}
+            className="flex items-center gap-2 border px-3 py-2 rounded-md shadow-sm bg-white"
+          >
+            <SlidersHorizontal className="w-3 h-3" />
+            <span className="text-xs">Filters</span>
+          </button>
+        </div>
+
+        {/* Main content */}
+        <div className="w-full lg:w-[83%]">
+          <Breadcrumb paths={[{ label: "Home", href: "/" }, { label: "Men" }]} />
+
+          <p className="font-light text-[clamp(1.2rem,2vw,5rem)]">
+            Men’s Clothing & Apparel - New Arrivals
+          </p>
+          <p className="text-gray-600 mb-4">Featured</p>
+
+          <ProductGrid products={filteredProducts} />
+        </div>
       </div>
 
-      {/* Main content */}
-      <div className="w-[83%]">
-        <Breadcrumb paths={[{ label: "Home", href: "/" }, { label: "Men" }]} />
-        {/* Title */}
-        <p className=" font-light text-[clamp(2rem,2vw,5rem)]">
-          Men’s Clothing & Apparel - New Arrivals
-        </p>
-        <p className="text-gray-600 mb-4">Featured</p>
+      {/* Mobile Filter Drawer */}
+      {isFilterOpen && (
+        <div className="fixed inset-0 z-50 flex">
+          {/* Overlay */}
+          <div
+            className="fixed inset-0 bg-black/40"
+            onClick={() => setIsFilterOpen(false)}
+          />
 
-        {/* Product Grid */}
-        <ProductGrid products={filteredProducts} />
-      </div>
+          {/* Drawer */}
+          <div className="relative z-50 w-3/4 max-w-sm bg-white h-full shadow-lg p-4 overflow-y-auto">
+            <button
+              onClick={() => setIsFilterOpen(false)}
+              className="absolute top-3 right-3 text-gray-600 hover:text-black"
+            >
+              ✕
+            </button>
+            <FilterSection categories={categories} colors={colors} sizes={sizes} />
+          </div>
+        </div>
+      )}
     </div>
-  </div>
-);
+  );
 }

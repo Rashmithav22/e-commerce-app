@@ -6,6 +6,9 @@ export interface Product {
   colors: string[];
   category: string;
   image: string;
+  images?: string[];  
   size: string[];
   tag?: string | string[];
+  clothing?: string;  // optional?
+  waist?: string;   
 }
