@@ -47,6 +47,7 @@ interface FiltersState {
   colors: string[];
   waist: string | null;
   clothing: string | null;
+  search: string; 
 }
 
 const initialState: FiltersState = {
@@ -54,6 +55,7 @@ const initialState: FiltersState = {
   colors: [],
   waist: null,
   clothing: null,
+   search: "",
 };
 
 export const filtersSlice = createSlice({
@@ -76,8 +78,11 @@ export const filtersSlice = createSlice({
     setClothing: (state, action: PayloadAction<string>) => {
       state.clothing = state.clothing === action.payload ? null : action.payload;
     },
+    setSearch: (state, action: PayloadAction<string>) => {   // 👈 new reducer
+      state.search = action.payload.toLowerCase();
+    },
   },
 });
 
-export const { toggleCategory, toggleColor, setWaist, setClothing } = filtersSlice.actions;
+export const { toggleCategory, toggleColor, setWaist, setClothing ,setSearch } = filtersSlice.actions;
 export default filtersSlice.reducer;

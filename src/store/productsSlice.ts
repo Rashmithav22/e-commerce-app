@@ -35,7 +35,13 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Product } from "../types/product";
 
-const initialState: { items: Product[] } = {
+interface ProductsState {
+  items: Product[];
+  searchQuery: string;
+}
+
+
+const initialState: ProductsState = {
   items: [
      {
     id: 1,
@@ -152,6 +158,9 @@ const initialState: { items: Product[] } = {
   },
     // ...add all your other products here
   ],
+  searchQuery: "",
+
+  
 };
 
 const productsSlice = createSlice({
@@ -160,9 +169,13 @@ const productsSlice = createSlice({
   reducers: {
     setProducts: (state, action: PayloadAction<Product[]>) => {
       state.items = action.payload;
+      
     },
+    setSearchQuery: (state, action: PayloadAction<string>) => {
+  state.searchQuery = action.payload; // updates correctly
+},
   },
 });
 
-export const { setProducts } = productsSlice.actions;
+export const { setProducts,setSearchQuery } = productsSlice.actions;
 export default productsSlice.reducer;

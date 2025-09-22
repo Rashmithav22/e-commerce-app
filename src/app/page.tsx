@@ -8,7 +8,7 @@ import Testimonial from "@/components/common/Testimonial";
 import HolidayPicks from "@/components/common/HolidayPicks";
 import EverlaneOnYou from "@/components/common/EverlaneOnYou";
 import ProductGrid from "@/components/common/container";
-
+import SearchBar from "../components/SearchBar";
 import { categories, favorites, testimonials } from "@/lib/data";
 import { Container } from "lucide-react";
 
@@ -16,7 +16,7 @@ import { Container } from "lucide-react";
 export default function HomePage() {
   return (
     <main className=" ">
-    
+
       <Hero  />
       <ShopByCategory />
       <HeroSection cards={categories} />

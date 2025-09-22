@@ -7,6 +7,10 @@ import { Category } from '@/types/categories';
 import { navbarConfig } from '@/types/categories';
 import { usePathname } from 'next/navigation';
 import CartButton from '../CartButton';
+import { RootState, AppDispatch } from "@/store";   // adjust path
+import { useDispatch, useSelector } from "react-redux";
+import { setSearchQuery } from "@/store/productsSlice";
+import { useRouter } from "next/navigation";
 
 
 type NavbarProps = {
@@ -20,7 +24,7 @@ export default function Navbar({ categories = [], showCategories = true }: Navba
   const [dropdownHeight, setDropdownHeight] = useState(0);
   const leftRef = useRef<HTMLDivElement>(null);
   const leaveTimeoutRef = useRef<NodeJS.Timeout | null>(null);
-  const [searchOpen, setSearchOpen] = useState(false);
+
 
   const topLinks = [
   { label: 'Women', href: '/women' },
@@ -96,6 +100,10 @@ useEffect(() => {
   };
 }, [menuOpen]);
 
+  const dispatch = useDispatch<AppDispatch>();
+  const searchValue = useSelector((state: RootState) => state.products.searchQuery);
+  const [searchOpen, setSearchOpen] = useState(false);
+  const router = useRouter();
 
   return (
     <header className="w-full relative  ">
@@ -129,11 +137,11 @@ useEffect(() => {
 
         {/* Right icons */}
         <div className="flex items-center space-x-4">
-          <Search 
-  size={20} 
-  className="cursor-pointer"
-  onClick={() => setSearchOpen(prev => !prev)}
-/>
+         <Search 
+        size={20} 
+        className="cursor-pointer"
+        onClick={() => setSearchOpen(!searchOpen)}
+      />
           <User size={20} />
            <CartButton />
           <span className="hidden sm:inline">USD</span>
@@ -230,16 +238,34 @@ useEffect(() => {
 
       </div>
        {searchOpen && (
-    <div className="w-full bg-white/50 shadow-md px-6 py-4">
-      <div className="max-w-6xl mx-auto">
+  <div className="w-full bg-white/80 shadow-md px-6 py-4">
+    <div className="max-w-6xl mx-auto">
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          if (searchValue.trim()) {
+            router.push('/search');
+          }
+        }}
+        className="flex gap-2"
+      >
         <input
           type="text"
+          value={searchValue}
+          onChange={(e) => dispatch(setSearchQuery(e.target.value))}
           placeholder="Search for products, categories, etc."
-          className="w-full border border-gray-300  bg-gray-100 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-black"
+          className="flex-1 border border-gray-300 bg-gray-100 rounded-md px-4 py-2 text-black focus:outline-none focus:ring-2 focus:ring-black/40"
         />
-      </div>
+        <button
+          type="submit"
+          className="bg-black text-white px-4 py-2 rounded-md hover:bg-gray-800 transition-colors"
+        >
+          Search
+        </button>
+      </form>
     </div>
-  )}
+  </div>
+)}
     </header>
   );
 }

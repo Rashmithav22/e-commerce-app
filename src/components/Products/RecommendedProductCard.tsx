@@ -7,7 +7,7 @@ interface Props {
   product: Product;
 }
 
-const RecommendedProductCard: FC<Props> = ({ product }) => {
+const RecommendedProductCard : FC<Props> = ({ product }) => {
   const discountedPrice = (product.price * 0.7).toFixed(2);
 
   return (
@@ -22,7 +22,7 @@ const RecommendedProductCard: FC<Props> = ({ product }) => {
         <img
           src={product.image}
           alt={product.title}
-          className="w-full h-[clamp(100px,40vh,200px)] xs:h-[clamp(300px,40vh,400px)]  md:h-[clamp(250px,40vh,800px)] lg:h-[clamp(350px,40vh,1200px)] xl:h-[clamp(450px,40vh,2000px)] object-cover mb-2 "
+          className="w-full h-[clamp(100px,40vh,200px)] xs:h-[clamp(300px,40vh,400px)]  md:h-[clamp(250px,40vh,800px)] lg:h-[clamp(300px,40vh,1000px)] xl:h-[clamp(400px,40vh,1600px)] object-cover mb-2 "
         />
 
         {/* Title and Price */}

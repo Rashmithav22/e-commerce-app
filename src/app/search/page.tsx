@@ -1,4 +1,4 @@
- "use client";
+"use client";
 import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
 import Breadcrumb from "@/components/Breadcrumb";
@@ -41,7 +41,7 @@ const categoryKeywords: { [key: string]: string } = {
   "sweaters": "Hoodies & Sweatshirts",
 };
 
-export default function MenPage() {
+export default function SearchPage() {
   const filters = useSelector((state: RootState) => state.filters);
   const products = useSelector((state: RootState) => state.products.items);
   const searchQuery = useSelector((state: RootState) => state.products.searchQuery);
@@ -92,7 +92,7 @@ export default function MenPage() {
         </div>
 
         {/* Mobile Filter Toggle */}
-        <div className="lg:hidden  flex justify-end">
+        <div className="lg:hidden flex justify-end">
           <button
             onClick={() => setIsFilterOpen(true)}
             className="flex items-center gap-2 border px-3 py-2 rounded-md shadow-sm bg-white"
@@ -104,12 +104,11 @@ export default function MenPage() {
 
         {/* Main content */}
         <div className="w-full lg:w-[83%]">
-          <Breadcrumb paths={[{ label: "Home", href: "/" }, { label: "Men" }]} />
+          <Breadcrumb paths={[{ label: "Home", href: "/" }, { label: "Search" }]} />
 
           <p className="font-light text-[clamp(1.2rem,2vw,5rem)]">
-            Men’s Clothing & Apparel - New Arrivals
+            Search Results
           </p>
-          <p className="text-gray-600 mb-4">Featured</p>
 
           {searchQuery && (
             <p className="text-sm text-gray-500 mb-4">

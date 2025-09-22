@@ -305,6 +305,7 @@ import Image from "next/image";
 import { useMemo, useState, useEffect } from "react";
 import { useCart } from "../../../store/cartContext";
 import RecommendedProductCard from "../../../components/Products/RecommendedProductCard";
+import { selectFilteredProducts } from "@/store/selectors";
 
 export default function ProductDetailsPage() {
   const { id } = useParams();
@@ -492,7 +493,7 @@ export default function ProductDetailsPage() {
       </div>
 
       {/* Recommended products */}
-      <div className="max-w-[clamp(400px,95vw,1800px)] mx-auto">
+      <div className="max-w-[clamp(400px,95vw,1000px)] mx-auto">
         <h2 className="mt-12 text-lg sm:text-xl font-semibold mb-6 text-center xl:text-4xl">
           Recommended for You
         </h2>
