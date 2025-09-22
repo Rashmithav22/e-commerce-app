@@ -1,35 +1,3 @@
-// // store/productsSlice.ts
-// import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-
-// export interface Product {
-//   id: number;
-//   name: string;
-//   category: string;
-//   color: string;
-//   size: string;
-// }
-
-// interface ProductsState {
-//   items: Product[];
-// }
-
-// const initialState: ProductsState = {
-//   items: [], // load your products here
-// };
-
-// const productsSlice = createSlice({
-//   name: "products",
-//   initialState,
-//   reducers: {
-//     setProducts: (state, action: PayloadAction<Product[]>) => {
-//       state.items = action.payload;
-//     },
-//   },
-// });
-
-// export const { setProducts } = productsSlice.actions;
-// export default productsSlice.reducer;
-
 
 // store/productsSlice.ts
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
@@ -159,7 +127,7 @@ const initialState: ProductsState = {
     // ...add all your other products here
   ],
   searchQuery: "",
-
+  
   
 };
 
