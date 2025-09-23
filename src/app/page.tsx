@@ -9,8 +9,8 @@ import HolidayPicks from "@/components/common/HolidayPicks";
 import EverlaneOnYou from "@/components/common/EverlaneOnYou";
 import ProductGrid from "@/components/common/container";
 
-import { categories, favorites, testimonials } from "@/lib/data";
-import { Container } from "lucide-react";
+import { categories } from "@/lib/data";
+
 
 
 export default function HomePage() {

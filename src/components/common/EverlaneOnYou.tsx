@@ -2,7 +2,7 @@
 // components/sections/EverlaneOnYou.tsx
 "use client";
 import Image from "next/image";
-import { ChevronLeft, ChevronRight, ShoppingCart } from "lucide-react";
+import { ShoppingCart } from "lucide-react";
 import { useDispatch } from "react-redux";
 import { addToCart } from "@/store/cartSlice";
 import Carousel from "@/components/common/Carousel"; // ✅ use custom carousel

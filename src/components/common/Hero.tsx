@@ -17,7 +17,6 @@ export default function Hero({
   title = 'Your Cozy Era',
   subtitle = 'Get peak comfy-chic \nwith new  winter essentials.',
   ctaText = 'SHOP NOW',
-  ctaLink = '#',
   imageSrc = '/assets/bg.png',
   height = 'h-[400px] md:h-[600px] lg:h-[700px]',
 }: HeroProps) {
