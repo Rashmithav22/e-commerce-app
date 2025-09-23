@@ -92,7 +92,7 @@ export default function ShopByCategory({
             {/* Back Side (Flip) */}
             <div className="absolute inset-0 flex items-center justify-center bg-black text-white [transform:rotateY(180deg)] [backface-visibility:hidden]">
               <Link
-                href="/shop"
+                href="/men"
                 className="bg-white text-black px-[clamp(0.5rem,2vw,1rem)] py-[clamp(0.25rem,1vw,0.5rem)] rounded shadow-md hover:bg-green-100 hover:text-black transition text-[clamp(0.75rem,1.5vw,1rem)]"
               >
                 Shop Now
