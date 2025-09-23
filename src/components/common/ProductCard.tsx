@@ -13,7 +13,7 @@ interface ProductCardProps {
   
 }
 
-export default function ProductCard({ name, price, image, text,onAddToCart ,imageHeight}: ProductCardProps) {
+export default function ProductCard({ name, price, image, text ,imageHeight}: ProductCardProps) {
   return (
     <div className="  overflow-hidden bg-white">
       <Image

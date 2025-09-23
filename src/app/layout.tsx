@@ -10,6 +10,7 @@ import Footer from '@/components/common/Footer';
 import { CartProvider } from "../store/cartContext";
 import CartDrawer from "../components/CartDrawer";
 
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
 
